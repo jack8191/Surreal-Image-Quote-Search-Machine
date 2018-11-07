@@ -10,7 +10,7 @@ function searchUnsplashImages(searchTerm, callback) {
   
   function displayUnsplashImages(responseData) {
       let displayImage = `
-      <div class="js-search-results>
+      <div class="js-search-results">
           <img src=${responseData.urls.regular} alt='a random unsplash image'>
       `;
       $('.js-search-results').html(displayImage);
