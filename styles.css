@@ -101,7 +101,7 @@ h2 {
     padding-bottom: 5px;
 }
 
-button {
+#searchbutton {
     background-color: #000000;
     border: 0.1rem solid #000000;
     border-radius: .4rem;
@@ -122,18 +122,44 @@ button {
     margin-right: auto;
 }
 
-button:focus {
+#searchbutton:focus {
     background-color: #606c76;
     border-color: #606c76;
     color: #fff;
     outline: 0;
 }
 
-button:hover {
+#searchbutton:hover {
     background-color: #606c76;
     border-color: #606c76;
     color: #fff;
     outline: 0;
+}
+
+#js-show-hide-landing, #js-show-hide-why-how{
+    background-color: #1D2731;
+    border: 0.1rem solid #1D2731;
+    border-radius: .4rem;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: .6rem;
+    font-weight: 700;
+    height: 1.4rem;
+    letter-spacing: .1rem;
+    line-height: 1.4rem;
+    padding: 0 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#js-show-hide-landing:hover, #js-show-hide-why-how:hover, #js-show-hide-landing:focus, #js-show-hide-why-how:focus{
+    background-color: #000000;
+    border: #000000;
 }
 
 
@@ -171,14 +197,24 @@ input {
     display: block;
 }
 
-a {
+a, a:visited {
     display: block;
+    color: rgb(32, 53, 73);
 }
 
 @media only screen and (min-width: 900px) {
     #landing, #explanation {
         margin-left: 20%;
         margin-right: 20%;
+    }
+    label, #results{
+        margin-top: 45px;
+    }
+    #explanation {
+        margin-top: 300px;
+    }
+    li {
+        margin-top: 3px;
     }
 }
 

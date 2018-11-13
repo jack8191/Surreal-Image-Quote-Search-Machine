@@ -18,10 +18,11 @@ function searchUnsplashImages(searchTerm, callback) {
   function displayUnsplashImages(responseData) {
       let displayImage = `
       <div class="js-search-results">
-          <img src=${responseData.urls.regular} alt='a random unsplash image'>
-          <a href=${responseData.user.links.html} title="link to photographer's Unsplash Profile" target="_blank">Photo by ${responseData.user.username}</a>
-          <a href=${responseData.links.html} title="link to the photo on Unsplash" target="_blank">View the image on Unsplash</a>
-          <a href=${responseData.links.download} title="link to download the image from Unsplash" target="_blank">Download Image?</a>
+        <h2>Results</h2>
+        <img src=${responseData.urls.regular} alt='a random unsplash image'>
+        <a href=${responseData.user.links.html} title="link to photographer's Unsplash Profile" target="_blank">Photo by ${responseData.user.username}</a>
+        <a href=${responseData.links.html} title="link to the photo on Unsplash" target="_blank">View the image on Unsplash</a>
+        <a href=${responseData.links.download} title="link to download the image from Unsplash" target="_blank">Download Image?</a>
       `;
       $('.js-search-results').html(displayImage);      
   }
