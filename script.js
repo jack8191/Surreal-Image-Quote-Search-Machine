@@ -23,9 +23,7 @@ function searchUnsplashImages(searchTerm, callback) {
           <a href=${responseData.links.html} title="link to the photo on Unsplash" target="_blank">View the image on Unsplash</a>
           <a href=${responseData.links.download} title="link to download the image from Unsplash" target="_blank">Download Image?</a>
       `;
-      $('.js-search-results').html(displayImage);
-      console.log(responseData);
-      
+      $('.js-search-results').html(displayImage);      
   }
 
   function getRandomQuote(callback){
@@ -41,10 +39,9 @@ function searchUnsplashImages(searchTerm, callback) {
   function displayRandomQuote(quoteResponseData){
     let displayQuote = `
     <div class="js-quote-result">
-      <p>${quoteResponseData.quote}</p>
+      <p>"${quoteResponseData.quote}"</p>
       <p>—${quoteResponseData.author}</p>
     `;
-    console.log(quoteResponseData);
     $('.js-quote-result').html(displayQuote);
   }
 
@@ -52,18 +49,6 @@ function searchUnsplashImages(searchTerm, callback) {
     let errorMessage = '<p>One of the external API\'s failed to respond. Please try again later.</p>'
     $('.js-error').html(errorMessage)
   }
-
- // function handleHideShowLanding(){
- //   $('#js-show-hide-landing').click(event => {
- //     $('#landing').toggleClass( "hidden" )
- //   });
- // }
-
-  //function handleHideShowWhyHow(){
-  //  $('#js-show-hide-why-how').click(event => {
-  //    $('.js-why-and-how').toggleClass( "hidden" )
-  //  });
- //}
   
   function onLoad() {
    $('.js-search-form').submit(event => {
@@ -84,5 +69,3 @@ function searchUnsplashImages(searchTerm, callback) {
   
   
 $(onLoad);
-//$(handleHideShowLanding);
-//$(handleHideShowWhyHow);

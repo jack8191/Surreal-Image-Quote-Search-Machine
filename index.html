@@ -5,18 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Surreal API Machine</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A fun toy to play with random search results">
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 </head>
 <body>
-    <header role="header">
+    <header role="banner">
         <h1>Surreal Image/Quote Search Machine</h1>
     </header>
     <main>
-        <section role="section">
-            <h2> What?</h2>
+        <section role="region" id="instructions" aria-live="polite">
+            <h2> What this is:</h2>
             <div class="js-landing" id="landing">
                 <p>Here's a fun game. Pick a search term. You will find an image based on that search term paired with a random quote.
                     Experement with different terms to see what combinations come up. We've gotten good results with the term 'thumbs' if you 
@@ -25,40 +26,39 @@
             </div>
             <button type="button" id="js-show-hide-landing">Show or Hide</button>
         </section>
-    <form action="#" class="js-search-form">
-        <label for="query"></label>
-        <input type="text" class="js-query" required>
-        <button type="submit">Search</button>
-    </form>
-    <h2>Results</h2>
-    <div class="js-error">
-        
-    </div>
-    <div class="js-search-results">
-        
-    </div>
-    <div class="js-quote-result">
-        
-    </div>
+        <form action="#" class="js-search-form">
+            <fieldset>
+            <label for="query">Put in a term and go!
+            <input placeholder="Search" type="text" class="js-query" required>
+            </label>
+            <button type="submit">Search</button>
+            </fieldset>
+        </form>
+        <section role="region" id="results" aria-live="polite">
+            <h2>Results</h2>
+            <div class="js-error"></div>
+            <div class="js-search-results"></div>
+            <div class="js-quote-result"></div>
+        </section>
+        <section role="region" id="explanation" aria-live="polite">
+            <h2>Why and How:</h2>
+            <div class="js-why-and-how hidden">
+                <p>This is a student coding project of me, jack eichner. i undertook it to practice front end and API fundamentals. 
+                </p>
+                <p>i came up with the idea by thinking about how the human mind's ability to find patterns in complex information leads to confusion and befuddlement when it
+                    views two things that are not related despite being next to one another.
+                </p>
+            </div>
+            <button type="button" id="js-show-hide-why-how">Show or Hide</button>
+        </section>
     </main>
-    <section role="section">
-        <h2>Why and How?</h2>
-        <div class="js-why-and-how hidden">
-            <p>This is a student coding project of me, jack eichner. i undertook it to practice front end and API fundamentals. 
-            </p>
-            <p>i came up with the idea by thinking about how the human mind's ability to find patterns in complex information leads to confusion and befuddlement when it
-                views two things that are not related despite being next to one another.
-            </p>
-        </div>
-        <button type="button" id="js-show-hide-why-how">Show or Hide</button>
-    </section>
-    <footer role="footer">
-    <h2>This Toy Makes Use of</h2>
-    <ul>
-        <li><a href="https://unsplash.com/" title="a link to Unsplash" target="_blank">Search for Random Photos API by Unsplash</a></li>
-        <li><a href="https://talaikis.com/quotes/" title="a link to the quote page of Tadas Talaikis" target="_blank">Random Quotes API by Tadas Talaikis</a></li>
-        <li>The Code and Concept of jack eichner</li>
-    </ul>
+     <footer role="contentinfo">
+        <h2>This Toy Makes Use of</h2>
+        <ul>
+            <li><a href="https://unsplash.com/" title="a link to Unsplash" target="_blank">Search for Random Photos API by Unsplash</a></li>
+            <li><a href="https://talaikis.com/quotes/" title="a link to the quote page of Tadas Talaikis" target="_blank">Random Quotes API by Tadas Talaikis</a></li>
+            <li>The Code and Concept of jack eichner</li>
+        </ul>
     </footer>
     <script src="script.js"></script>
 </body>
