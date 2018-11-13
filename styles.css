@@ -175,5 +175,14 @@ a {
     display: block;
 }
 
+@media only screen and (min-width: 900px) {
+    #landing, #explanation {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+
+
 
 
