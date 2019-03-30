@@ -19,10 +19,10 @@ function searchUnsplashImages(searchTerm, callback) {
       let displayImage = `
       <div class="js-search-results">
         <h2>Results</h2>
-        <img src=${responseData.urls.regular} alt='a random unsplash image'>
         <a href=${responseData.user.links.html} title="link to photographer's Unsplash Profile" target="_blank">Photo by ${responseData.user.username}</a>
         <a href=${responseData.links.html} title="link to the photo on Unsplash" target="_blank">View the image on Unsplash</a>
         <a href=${responseData.links.download} title="link to download the image from Unsplash" target="_blank">Download Image?</a>
+        <img src=${responseData.urls.regular} alt='a random unsplash image'>
       `;
       $('.js-search-results').html(displayImage);      
   }
@@ -135,7 +135,6 @@ function renderQuote() {
     getRandomName(c, function(p) {
       getRandomQuote(p, function(x) {
         $("#quotes").text(x);
-        $("#tweet").on("click", sendTweet(x, p));
       });
       $("#author").text("-" + p);
     });

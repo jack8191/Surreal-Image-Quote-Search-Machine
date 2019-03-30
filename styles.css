@@ -72,8 +72,6 @@ h1 {
 
 
 
-
-
 .hidden {
     display: none;
 }
@@ -177,8 +175,10 @@ h2 {
 img {
     height: auto; 
     width: auto; 
-    max-width: 100%;
-    max-height: 100%; 
+    max-width: 75%;
+    max-height: 75%;
+    padding: 5px;
+    /* max-height: 100%;  */
 }
 
 label {
