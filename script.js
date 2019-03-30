@@ -28,25 +28,119 @@ function searchUnsplashImages(searchTerm, callback) {
   }
 
   //For accessing the random quote API
-  function getRandomQuote(callback){
-    let url = 'https://talaikis.com/api/quotes/random/';
-    $.ajax({
-      url,
-      method: 'GET',
-      success: callback,
-      error: errorHandle
-    })
-  }
+  // function getRandomQuote(callback){
+  //   let url = 'https://talaikis.com/api/quotes/random/';
+  //   $.ajax({
+  //     url,
+  //     method: 'GET',
+  //     success: callback,
+  //     error: errorHandle
+  //   })
+  // }
 
   //For rendering the random quote in the DOM
-  function displayRandomQuote(quoteResponseData){
-    let displayQuote = `
-    <div class="js-quote-result">
-      <p>"${quoteResponseData.quote}"</p>
-      <p>—${quoteResponseData.author}</p>
-    `;
-    $('.js-quote-result').html(displayQuote);
-  }
+  // function displayRandomQuote(quoteResponseData){
+  //   let displayQuote = `
+  //   <div class="js-quote-result">
+  //     <p>"${quoteResponseData.quote}"</p>
+  //     <p>—${quoteResponseData.author}</p>
+  //   `;
+  //   $('.js-quote-result').html(displayQuote);
+  // }
+
+  var api = "https://en.wikiquote.org/w/api.php";
+
+function getRandomStart(callback) {
+  $.ajax({
+    url: "https://en.wikiquote.org/w/api.php",
+    data: {
+      "action": "query",
+      "format": "json",
+      "titles": "List of people by name",
+      "generator": "links",
+      "gplnamespace": "0",
+      "gpllimit": "20"
+    },
+    dataType: "jsonp",
+    success: function(jsondata) {
+      var links = jsondata.query.pages;
+      var pageIds = [];
+      for (var prop in links) {
+        pageIds.push(links[prop].pageid);
+      }
+      var rand = pageIds[Math.floor(Math.random() * pageIds.length)];
+      callback(rand);
+    },
+    error: function(xhr, callback) {
+      console.log("Error getting quotes");
+    }
+  });
+}
+
+function getRandomName(pageId, callback) {
+  $.ajax({
+    url: "https://en.wikiquote.org/w/api.php" + "?action=query&format=json&origin=*&prop=links&pageids=" + pageId + "&redirects=1&pllimit=max&callback=?",
+    dataType: "jsonp",
+    success: function(jsondata) {
+      var properId = Object.keys(jsondata.query.pages)[0];
+      var links = jsondata.query.pages[properId].links;
+      var randPerson = links[Math.floor(Math.random() * links.length)].title;
+      while (randPerson.indexOf("List of people") != -1) {
+        randPerson = links[Math.floor(Math.random() * links.length)].title;
+      }
+      currentAuthor = randPerson;
+      callback(randPerson);
+    },
+    error: function(xhr, callback) {
+      console.log("Error getting quotes");
+    }
+  });
+}
+
+function getRandomQuote(title, callback) {
+  $.ajax({
+    url: "https://en.wikiquote.org/w/api.php",
+    data: {
+      "action": "parse",
+      "format": "json",
+      "origin": "*",
+      "page": title,
+      "prop": "text",
+      "section": "1",
+      "disablelimitreport": 1,
+      "disabletoc": 1
+    },
+    dataType: "jsonp",
+    success: function(jsondata) {
+      var text = jsondata.parse.text["*"];
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(text, "text/html");
+      while (doc.querySelector("li > ul > li")) {
+        var toRemove = doc.querySelector("li > ul");
+        toRemove.parentNode.removeChild(toRemove);
+      }
+      var quotes = doc.querySelectorAll("ul > li");
+      var randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      currentQuote = randomQuote.textContent || randomQuote.innerText;
+      callback(randomQuote.textContent || randomQuote.innerText);
+    },
+    error: function(xhr, callback) {
+      console.log("Error getting quotes");
+    }
+  });
+}
+
+function renderQuote() {
+  getRandomStart(function(c) {
+    getRandomName(c, function(p) {
+      getRandomQuote(p, function(x) {
+        $("#quotes").text(x);
+        $("#tweet").on("click", sendTweet(x, p));
+      });
+      $("#author").text("-" + p);
+    });
+  });
+}
 
   //Called when one of the API's fails to return useable data
   function errorHandle(){
@@ -61,7 +155,8 @@ function searchUnsplashImages(searchTerm, callback) {
       const queryTarget = $(event.currentTarget).find('.js-query');
       const query = queryTarget.val();
       searchUnsplashImages(query, displayUnsplashImages);
-      getRandomQuote(displayRandomQuote);
+      renderQuote()
+      // getRandomQuote(displayRandomQuote);
     });
     $('#js-show-hide-landing').click(event => {
       $('#landing').toggleClass( "hidden" )
