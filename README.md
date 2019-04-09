@@ -4,9 +4,9 @@ Deployed at: https://jack8191.github.io/Surreal-Image-Quote-Search-Machine/
 
 Screenshots:
     Landing Page
-    <img src="https://drive.google.com/file/d/1SLWO8Jtx-8snAqFHheFMIL2AIKBOS1Nu/view?usp=sharing">
+    ![Landing](landing-pic.png)
     Results Page
-    <img src="https://drive.google.com/file/d/1i2B_uCdFoONma6xHWo3SNPbuZoiyDFMF/view?usp=sharing">
+    ![Results](results-pic.png)
 
 Summary of Function
     This app takes a search term from the user and returns a random image based on the search term from Unsplash paired with a random quote
